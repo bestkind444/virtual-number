@@ -27,6 +27,8 @@ export { authMiddleware };
 
 const refreshToken = async (req, res) => {
   const { refreshToken } = req.body;
+  console.log(refreshToken);
+  
   try {
     if (!refreshToken) {
       return res.status(400).json({
@@ -87,8 +89,9 @@ const refreshToken = async (req, res) => {
 
 
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ success: false, message: "server error" });
-
+    
   }
 
 

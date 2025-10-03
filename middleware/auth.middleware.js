@@ -27,7 +27,6 @@ export { authMiddleware };
 
 const refreshToken = async (req, res) => {
   const { refreshToken } = req.body;
-  console.log(refreshToken);
   
   try {
     if (!refreshToken) {
@@ -44,7 +43,7 @@ const refreshToken = async (req, res) => {
     if (!istokenValid || istokenValid.expiresAt < new Date()) {
       return res.status(403).json({
         success: false,
-        message: "no Invalid or expired refresh token provided"
+        message: "Invalid or expired refresh token provided"
       });
     }
 
@@ -71,7 +70,7 @@ const refreshToken = async (req, res) => {
         where: { token: refreshToken }
       }),
       prisma.refresherToken.create({
-        data: { token: newRefreshToken, expiresAt }
+        data: { token: newRefreshToken, expiresAt, userId: payload.userId }
       })
     ]);
 

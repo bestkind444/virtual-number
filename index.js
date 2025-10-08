@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import twilio from "twilio";
+import bendOtpRouter from "./routes/bendOtp.routes.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/api/q5/", authRoutes);
+app.use("/api/q5", bendOtpRouter);
 
 
 

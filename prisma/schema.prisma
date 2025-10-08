@@ -1,29 +1,37 @@
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
   // directUrl = env("DIRECT_URL")
 }
 
-model User{
- id  String @id @default(cuid())
- firstName String 
- lastName String 
- userName String
- email  String @unique
- password String
- refreshtoken refresherToken[]
+model User {
+  id            String           @id @default(cuid())
+  firstName     String
+  lastName      String
+  userName      String
+  email         String           @unique
+  password      String
+  phone         String?
+  // Paystack related fields
+  accountNumber String?
+  bankName      String?
+  bankCode      String?
+  customerCode  String? // e.g., "Wema Bank"
+  walletBalance Float            @default(0.00)
+  refreshtoken  refresherToken[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
 }
 
-model refresherToken{
-  id Int @id @default(autoincrement())
-  token String @unique
-  userId String
-  user User @relation(fields: [userId], references: [id])
+model refresherToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   expiresAt DateTime
-}        
+}

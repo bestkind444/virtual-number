@@ -1,6 +1,7 @@
 import { prisma } from "../db/prisma.js";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs";
+import { createVirtualAccount } from "./paystack.controller.js";
 
 //sign up
 const registerUser = async (req, res) => {
@@ -33,7 +34,7 @@ const registerUser = async (req, res) => {
         }
         const hashedpassword = await bcrypt.hash(password, 10)
 
-        const user = await prisma.user.create({
+        const newUser = await prisma.user.create({
             data: {
                 firstName,
                 lastName,
@@ -43,16 +44,39 @@ const registerUser = async (req, res) => {
             }
         });
 
-        res.status(200).json({
-            success: true,
-            message: "Registration successful",
-            data: {
-                firstName: user.firstName,
-                lastName: user.lastName,
-                userName: user.userName,
-                email: user.email
+          // 🔹 Create Paystack Virtual Account
+    // const virtualAcc = await createVirtualAccount(email, firstName, lastName);
+
+    // 🔹 If Paystack creation was successful, update user record
+    // if (virtualAcc.success) {
+    //   await prisma.user.update({
+    //     where: { id: newUser.id },
+    //     data: {
+    //       accountNumber: virtualAcc.account_number,
+    //       bankName: virtualAcc.bank_name,
+    //       bankCode: virtualAcc.bank_code,
+    //       customerCode: virtualAcc.customer_code,
+    //     },
+    //   });
+    // }
+
+    
+    res.status(201).json({
+      success: true,
+      message: "Registration successful",
+      data: {
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        userName: newUser.userName,
+        email: newUser.email,
+        virtualAccount: virtualAcc.success
+          ? {
+              bank: virtualAcc.bank_name,
+              accountNumber: virtualAcc.account_number,
             }
-        })
+          : "Virtual account creation failed",
+      },
+    });
 
     } catch (error) {
 

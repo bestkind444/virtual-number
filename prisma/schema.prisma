@@ -24,7 +24,7 @@ model User {
   walletBalance Float            @default(0.00)
   refreshtoken  refresherToken[]
   createdAt     DateTime         @default(now())
-  updatedAt     DateTime         @updatedAt
+  
 }
 
 model refresherToken {

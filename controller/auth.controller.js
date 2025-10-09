@@ -69,17 +69,14 @@ const registerUser = async (req, res) => {
         lastName: newUser.lastName,
         userName: newUser.userName,
         email: newUser.email,
-        virtualAccount: virtualAcc.success
-          ? {
-              bank: virtualAcc.bank_name,
-              accountNumber: virtualAcc.account_number,
-            }
-          : "Virtual account creation failed",
+        
       },
     });
 
     } catch (error) {
-
+            console.error(error);
+            throw new Error(error);
+            
     }
 
 

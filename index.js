@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/api/q5/", authRoutes);
-app.use("/api/q5", bendOtpRouter);
+app.use("/api/q5/", bendOtpRouter);
 
 
 

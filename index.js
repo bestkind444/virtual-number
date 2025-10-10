@@ -37,6 +37,18 @@ const  getbalance = async () => {
 }
 getbalance();
 
+    try {
+        const response = await axios.get("https://benotp.com/api/all/");
+        console.log(response.data);
+        
+        // res.json(response.data);
+
+    } catch (error) {
+        console.error("Error fetching countries:", error.message);
+        res.status(500).json({ error: "Failed to fetch countries" });
+    }
+
+
 
 
 // const accountSid = process.env.ACCOUNT_SID;

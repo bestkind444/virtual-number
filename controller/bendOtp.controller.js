@@ -3,7 +3,7 @@ import axios from "axios";
 const getCountries = async (req, res) => {
     try {
         const response = await axios.get("https://benotp.com/api/all/");
-        // console.log(response.data);
+        console.log(response.data);
         
         res.json(response.data);
 
@@ -13,5 +13,5 @@ const getCountries = async (req, res) => {
     }
 
 }
-
 export { getCountries };
+

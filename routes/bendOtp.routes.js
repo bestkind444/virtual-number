@@ -6,7 +6,7 @@ import { authMiddleware } from "../middleware/auth.middleware.js";
 const bendOtpRouter = Router();
 
 
-bendOtpRouter.get("/all/coutries", getCountries);
+bendOtpRouter.get("/all/countries", getCountries);
 
 
 

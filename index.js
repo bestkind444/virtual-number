@@ -19,23 +19,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/q5/", authRoutes);
 app.use("/api/q5", bendOtpRouter);
 
-const  getbalance = async () => {
-  const api_key = process.env.BENOTP_API_KEY;
-  try {
+// const  getbalance = async () => {
+//   const api_key = process.env.BENOTP_API_KEY;
+//   try {
 
     
-  const response = await axios.post("https://benotp.com/api/balance/",  { "api-key": api_key}, {
-    headers: {"Content-Type": "application/json", "Accept": "application/json"}
-  });
-  console.log(`my benotp balance is ${response.data.balance}`); 
+//   const response = await axios.post("https://benotp.com/api/balance/",  { "api-key": api_key}, {
+//     headers: {"Content-Type": "application/json", "Accept": "application/json"}
+//   });
+//   console.log(`my benotp balance is ${response.data.balance}`); 
     
-  } catch (error) {
-    console.log(error.response ? error.response.data : error.message);
+//   } catch (error) {
+//     console.log(error.response ? error.response.data : error.message);
     
-  }
+//   }
    
-}
-getbalance();
+// }
+// getbalance();
 
 
 

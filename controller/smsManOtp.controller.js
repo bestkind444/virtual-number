@@ -62,6 +62,8 @@ export { getService };
 //get current price
 const getCurrentPrice = async (req, res) => {
     const { country, application } = req.body;
+    const userId = req.userId;
+    console.log(userId);
     if (!country) {
         return res.status(400).json({ success: false, message: "invalid country" });
     }
@@ -105,6 +107,9 @@ export { getCurrentPrice };
 
 const getNumber = async (req, res) => {
     const { country, application } = req.body;
+    const userId = req.userId;
+    console.log(userId);
+    
     if (!country || !application) {
         return res.status(400).json({
             success: false,

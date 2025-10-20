@@ -8,7 +8,7 @@ const smsManRouter = Router();
 
 smsManRouter.get("/all/countries", getCountries);
 smsManRouter.get("/all/service", getService);
-smsManRouter.post("/all/price",  getCurrentPrice);
+smsManRouter.post("/all/price", authMiddleware,  getCurrentPrice);
 smsManRouter.get("/all/balance", getBalance);
 smsManRouter.post("/all/num", authMiddleware, getNumber);
 

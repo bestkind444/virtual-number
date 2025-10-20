@@ -10,7 +10,7 @@ smsManRouter.get("/all/countries", getCountries);
 smsManRouter.get("/all/service", getService);
 smsManRouter.post("/all/price",  getCurrentPrice);
 smsManRouter.get("/all/balance", getBalance);
-smsManRouter.post("/all/num", getNumber);
+smsManRouter.post("/all/num", authMiddleware, getNumber);
 
 
 

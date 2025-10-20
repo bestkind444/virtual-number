@@ -1,8 +1,8 @@
 import axios from "axios";
 import CurrencyConverter from "currency-converter-lt";
-import { application } from "express";
+// import { application } from "express";
 
-const converter = new CurrencyConverter();
+// const converter = new CurrencyConverter();
 
 const API_KEY = process.env.SMS_MAN_OTP;
 
@@ -99,7 +99,6 @@ const getCurrentPrice = async (req, res) => {
         res.status(500).json({ error: "Failed to fetch prices" });
     }
 };
-
 export { getCurrentPrice };
 
 //get Phone number 
@@ -112,7 +111,7 @@ const getNumber = async (req, res) => {
             message: "empty details"
         });
     }
-
+ 
     try {
         const reponse = await axios.get(`https://api.sms-man.com/control/get-number?token=${API_KEY}&country_id=${country}&application_id=${application}`)
 

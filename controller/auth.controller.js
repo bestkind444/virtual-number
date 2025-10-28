@@ -44,22 +44,7 @@ const registerUser = async (req, res) => {
             }
         });
 
-          // 🔹 Create Paystack Virtual Account
-    // const virtualAcc = await createVirtualAccount(email, firstName, lastName);
-
-    // 🔹 If Paystack creation was successful, update user record
-    // if (virtualAcc.success) {
-    //   await prisma.user.update({
-    //     where: { id: newUser.id },
-    //     data: {
-    //       accountNumber: virtualAcc.account_number,
-    //       bankName: virtualAcc.bank_name,
-    //       bankCode: virtualAcc.bank_code,
-    //       customerCode: virtualAcc.customer_code,
-    //     },
-    //   });
-    // }
-
+    
     
     res.status(201).json({
       success: true,

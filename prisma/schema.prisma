@@ -16,13 +16,9 @@ model User {
   email         String           @unique
   password      String
   phone         String?
-  // Paystack related fields
-  accountNumber String?
-  bankName      String?
-  bankCode      String?
-  customerCode  String? // e.g., "Wema Bank"
-  walletBalance Float            @default(0.00)
+  balance        Float   @default(0.00)
   refreshtoken  refresherToken[]
+  virtualnumber  VirtualNumber[]
   createdAt     DateTime         @default(now())
   
 }
@@ -34,4 +30,14 @@ model refresherToken {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   expiresAt DateTime
+}
+
+
+model VirtualNumber{
+id Int @id @default(autoincrement())
+number String
+smsCode String
+userId String
+user  User @relation(fields: [userId], references: [id])
+date DateTime @default(now())
 }

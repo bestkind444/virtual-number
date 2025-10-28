@@ -4,6 +4,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import twilio from "twilio";
 import smsManRouter from "./routes/smsManOtp.routes.js";
+import {prisma } from "./db/prisma.js"
 
 const app = express();
 
@@ -17,7 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 app.use("/api/q5", authRoutes);
 app.use("/api/q5", smsManRouter);
-
 
 
 // const accountSid = process.env.ACCOUNT_SID;
